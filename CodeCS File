@@ -1,0 +1,159 @@
+//Write a program that loops through [1..100]. It should do the following:
+//a) If the number is divisible by 3, print “fizz”.
+//b) If divisible by 5 print “buzz”.
+//c) If divisible by 3 & 5, print “fizzbuzz”
+using System;
+					
+public class Program
+{
+	public static void Main()
+	{
+		Console.WriteLine("First Program");
+		
+		for(int i= 0 ; i<= 100 ;i++)
+		{
+			if(i % 3 == 0)
+			{
+				 Console.WriteLine("Fizz");
+			}
+			if(i % 5 == 0 )
+			{
+				 Console.WriteLine("Buzz");
+			}
+			
+			if(i % 3 == 0 && i % 5 == 0)
+			{
+				Console.WriteLine("fizzbuzz");
+			}
+		}
+		
+		
+	}
+}
+
+
+
+
+using System;
+					
+public class Program
+{
+	public static void Main()
+	{
+		Console.WriteLine("Enter AWord ");
+		String Char = Console.ReadLine().ToString();
+		Char[] array = Char.ToCharArray();
+		Array.Reverse(array);
+		Console.WriteLine(array);
+		
+	}
+}
+
+
+
+using System;
+using System.ComponentModel.DataAnnotations;
+using system.Collection;
+
+namespace HelloWorldMvcApp
+{
+	public class Product
+	{		
+		public string ProductName { get; set; }
+		
+		public decimal Price { get; set; }
+		
+		public string  Description  { get; set; }
+		
+	}
+	
+	public class Offer
+	{
+		
+		public string  OfferName  { get; set; }
+		
+		public List<Product> ListOfProduct {get;set;}
+	}
+	public class OfferSerice {
+		
+		private list<product> productinentory = new list<product>();		
+		
+		private list<product> createInvetoy(){
+			var productinentory =
+			productinentory.items.add("p1",1000,"p1Desc");
+			productinentory.items.add("p1",1000,"p1Desc");
+			productinentory.items.add("p2",2000,"p2Desc");
+			productinentory.items.add("p3",3000,"p3Desc");
+			productinentory.items.add("p4",4000,"p4Desc");
+			return productinentory.toList();
+		}
+		
+		public IEnumrable<List<Product>> GetAllProducts()
+		{
+			OfferService _offerservice= new OfferService();
+			return _offerservice.createInvetoy().ToList();
+		}
+		
+		public IEnumrable<List<Product>> GetTodayOffer()
+		{
+			OfferService _offerservice= new OfferService();
+			var ComboList= _offerService.CreateInvetory().Items,Add("Combo");
+			return _offerservice.createInvetoy(x=>x.ProductName.Startwith("P").Select()
+											   .Where(x=>x.Proce > 10).ToList());
+			
+		}
+	}
+	
+}
+
+inteface IOfferService
+{
+    GetAllProducts();
+    GetTodayOffer();
+    CreateInvetory(Product productinfo);
+}
+
+public class InvetoryController: ApiControlle
+{
+        private IOfferService offerservice;
+        InvetoryController(IOfferService _offerService)
+        {
+            offerservice = _offerService;
+        }
+
+        [httget]
+        [authorize:"UseRol"]
+        public async Task<IEnumrable<list<product>> GetAllProducts()
+        {
+            return await offerservice.GetAllProducts(x=>x.Price).Select().GroupBy(x=>x.Price);
+        }
+        [httget]
+        [authorize:"UseRol"]
+        public async Task<IEnumrable<list<product>> GetAllProducts()
+        {
+            return await offerservice.GetAllProducts(x=>x.Price).Select().GroupBy(x=>x.Price);
+        }
+        [httget]
+        [authorize:"UseRol"]
+        public async Task<IEnumrable<list<product>> GetTodayOffer()
+        {
+            return await offerservice.GetAllProducts(x=>x.Price).Select().GroupBy(x=>x.Price);
+        }
+        [httpost]
+        [authorize:"UseRol"]
+        public async Task<bool> CreateofferSerivice([formdata] prodcutbody)
+        {
+            var product = (product)prodcutbody.joson;
+            return await offerservice.createInvetoy(product);
+        }
+}
+
+public class MVCController : BaseController
+{
+    MVCController()
+    {
+
+    }
+    
+    public CatioResult
+}
